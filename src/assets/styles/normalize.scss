@@ -1,0 +1,17 @@
+body,html{font-family:Gilroy,sans-serif;font-weight:400;line-height:1.2;-webkit-animation:1s infinite bugfix}
+body,html,input,textarea{-webkit-animation:1s infinite bugfix}
+body,h1,h2,h3,h4,h5,h6,html,input,textarea,ul,ul li{padding:0;margin:0}
+*,::after,::before{box-sizing:border-box}
+body{color:#282828}
+input,textarea{line-height:inherit}
+a{color:unset}
+a,a:hover{text-decoration:none}
+a,button,input,textarea{outline:0;cursor:pointer;font:inherit}
+h1,h2,h3,h4,h5,h6{font:inherit}
+p{margin-top:0;margin-bottom:0}
+button{border:none;color:inherit;font:inherit;text-align:inherit;padding:0;background-color:inherit}
+ul li{list-style:none}.container{width:144rem;margin:0 auto}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input[type=number]{-moz-appearance:textfield}
+@media (max-width:48em){html{font-size:1.5625vw;font-size:calc((100/320) * 5vw)}
+body{-webkit-text-size-adjust:none}.container{padding:0 3rem}}
