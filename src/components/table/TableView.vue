@@ -2,15 +2,8 @@
 .table-view
     .table
         .table__header
-            div(
-                class="table__cell table__cell_header",
-                @click="sortByDate()"
-            )
+            .table__cell.table__cell_header
                 | Дата
-                .icon-sort
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24">
-                        <path d="m12 21-4.5-4.5 1.45-1.45L12 18.1l3.05-3.05 1.45 1.45ZM8.95 9.05 7.5 7.6 12 3.1l4.5 4.5-1.45 1.45L12 6Z"/>
-                    </svg>
             div(
                 class="table__cell table__cell_header",
                 @click="sortByName()"
@@ -67,6 +60,12 @@ export default {
         return {
             postsPerPage: 10,
             pageNumber: 1,
+            isSortByName: false,
+            isSortByNameDown: false,
+            isSortByCount: false,
+            isSortByCountDown: false,
+            isSortByDistance: false,
+            isSortByDistanceDown: false,
         };
     },
     computed: {
@@ -92,17 +91,52 @@ export default {
         pageClick(page) {
             this.pageNumber = page;
         },
-        sortByDate() {
-            this.POSTS.sort((a,b) => a.date.localeCompare(b.date));
+        clearSort() {
+            this.isSortByName = false;
+            this.isSortByNameDown = false;
+            this.isSortByCount = false;
+            this.isSortByCountDown = false;
+            this.isSortByDistance = false;
+            this.isSortByDistanceDown = false;
         },
         sortByName() {
-            this.POSTS.sort((a,b) => a.name.localeCompare(b.name));
+            if(this.isSortByName === false) {
+                this.POSTS.sort((a,b) => a.name.localeCompare(b.name));
+                this.clearSort();
+                this.isSortByName = true;
+            } else if(this.isSortByNameDown === false) {
+                this.POSTS.sort((a,b) => b.name.localeCompare(a.name));
+                this.isSortByNameDown = true;
+            } else if(this.isSortByNameDown === true) {
+                this.POSTS.sort((a,b) => a.name.localeCompare(b.name));
+                this.isSortByNameDown = false;
+            }
         },
         sortByCount() {
-            this.POSTS.sort((a,b) => a.count - b.count);
+            if(this.isSortByCount === false) {
+                this.POSTS.sort((a,b) => a.count - b.count);
+                this.clearSort();
+                this.isSortByCount = true;
+            } else if(this.isSortByCountDown === false) {
+                this.POSTS.sort((a,b) => b.count - a.count);
+                this.isSortByCountDown = true;
+            } else if(this.isSortByCountDown === true) {
+                this.POSTS.sort((a,b) => a.count - b.count);
+                this.isSortByCountDown = false;
+            }
         },
         sortByDistance() {
-            this.POSTS.sort((a,b) => a.distance - b.distance);
+            if(this.isSortByDistance === false) {
+                this.POSTS.sort((a,b) => a.distance - b.distance);
+                this.clearSort();
+                this.isSortByDistance = true;
+            } else if(this.isSortByDistanceDown === false) {
+                this.POSTS.sort((a,b) => b.distance - a.distance);
+                this.isSortByDistanceDown = true;
+            } else if(this.isSortByDistanceDown === true) {
+                this.POSTS.sort((a,b) => a.distance - b.distance);
+                this.isSortByDistanceDown = false;
+            }
         },
     },
     mounted() {
@@ -166,6 +200,7 @@ export default {
 
         &_header {
             font-weight: 700;
+            user-select: none;  
 
             &:hover {
                 cursor: pointer;
